@@ -26,3 +26,6 @@
   (if (or (zerop n) (null lst))
       nil
       (cons (car lst) (take (cdr lst) (1- n)))))
+
+(defun rangep (begin end x)
+  (and (>= x begin) (<= x end)))
