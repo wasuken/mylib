@@ -16,11 +16,12 @@
 		 (cons begin (range (+ begin step) end step)))
 		(t nil)))
 
-(defun get-format-date (&optional (later-day 0))
+(defun get-format-date (&optional (format-string "~D-~2,'0D-~2,'0D ~2,'0D:~2,'0D:~2,'0D")
+						  (later-day 0))
   (multiple-value-bind (sec min hour day mon year)
       (decode-universal-time (+ (get-universal-time)
                                 (* 60 60 24 later-day)))
-    (format nil "~D-~2,'0D-~2,'0D ~2,'0D:~2,'0D:~2,'0D" year mon day hour min sec)))
+    (format nil format-string year mon day hour min sec)))
 
 (defun take (lst n)
   (if (or (zerop n) (null lst))
